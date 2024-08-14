@@ -19,7 +19,7 @@ export class AuthService {
                 // call anathor method (then do login by default)
                 return this.login({email,password});
             }
-            else {
+            else { 
                 return userAccount;
             }
         } catch (error) {
@@ -44,7 +44,7 @@ export class AuthService {
         try {
                return await this.account.get();
         } catch (error) {
-            console.log("Appwrite service :: getCurrentUser",error);
+            console.log("Appwrite service :: getCurrentUser:: error",error);
             
             // throw error;
         }
@@ -53,6 +53,7 @@ export class AuthService {
 
     async logOut(){
         try {
+            //logout from all browser
             await this.account.deleteSessions();
         } catch (error) {
             console.log("Appwrite service :: logOut :: error",error);
