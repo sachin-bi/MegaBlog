@@ -22,7 +22,7 @@ export class Service {
             return await this.databases.createDocument(
                 conf.appwriteDatabaseId,
                 conf.appwriteCollectionId,
-                slug,
+                slug,   // documentID
                 {
                     title,
                     content,
@@ -96,12 +96,12 @@ export class Service {
         }
     }
 
-    // file upload service
+    // file upload service or methods
 
     async uploadFile(file) {
         try {
             return await this.bucket.createFile(
-                conf.appwriteBucketId,
+                conf.appwriteBucketId,  // storage id
                 ID.unique(),
                 file,
             )

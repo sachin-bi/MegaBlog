@@ -48,6 +48,7 @@ export class AuthService {
             
             // throw error;
         }
+        // no account currently loggedin
         return null;
     }
 
@@ -66,4 +67,4 @@ export class AuthService {
 const authService = new AuthService();
 
 
-export default AuthService
+export default authService 
