@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";  // binding redux and react
 import "./App.css";
 import authService from "./appwrite/auth";
 import { login, logout } from "./store/authSlice";
@@ -36,7 +36,7 @@ function App() {
         <Footer/>
       </div>
     </div>
-  ) : null;
+  ) : null; // null can be optimized (what to do while loading)
 }
 
 export default App;
