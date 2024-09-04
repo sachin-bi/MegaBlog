@@ -52,7 +52,7 @@ export class AuthService {
         return null;
     }
 
-    async logOut(){
+    async logout(){
         try {
             //logout from all browser
             await this.account.deleteSessions();
