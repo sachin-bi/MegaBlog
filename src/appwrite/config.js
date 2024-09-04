@@ -126,6 +126,7 @@ export class Service {
     }
     async getPreviewFile(fileId) {
         try {
+            // returns img preview url
             return this.bucket.getFilePreview(
                 conf.appwriteBucketId,
                 fileId,
