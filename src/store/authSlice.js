@@ -6,6 +6,7 @@ const initialState = {
 };
 
 const authSlice = createSlice({
+    // name is important
     name: "auth",
     initialState,
     reducers: {
