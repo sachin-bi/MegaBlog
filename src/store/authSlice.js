@@ -6,7 +6,7 @@ const initialState = {
 };
 
 const authSlice = createSlice({
-    // name is important
+    // name is important(without it, we can't get the data)(using useSelector)
     name: "auth",
     initialState,
     reducers: {
