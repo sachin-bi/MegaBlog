@@ -4,6 +4,9 @@ import { Link } from "react-router-dom";
 
 // these props data will get from appwite- you can add views , date,time, likes, etc
 function PostCard({ $id, title, featuredImage }) {
+
+  // $id will get from appwrite
+  
   return (
     <Link to={`/post/${$id}`}>
       <div className="w-full bg-gray-100 rounded-xl p-4">
