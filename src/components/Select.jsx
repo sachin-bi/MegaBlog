@@ -5,7 +5,7 @@ function Select({ options, label, className = "", ...props }, ref) {
 
   return (
     <div className="w-full">
-      // "html ka structure na bigreh" - thats why label kept here
+      {/* // "html ka structure na bigreh" - thats why label kept here */}
       {label && <label htmlFor={id} className=""></label>}
       <select
         {...props}

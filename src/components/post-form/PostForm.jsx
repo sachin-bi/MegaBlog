@@ -6,19 +6,20 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 function PostForm({ post }) {
-  const { register, handleSubmit, watch, setValue } = useForm({
-    defaultValues: {
-      title: post?.title || "",
-      content: post?.content || "",
-      slug: post?.slug || "",
-      status: post?.status || "active",
-    },
-  });
+  const { register, handleSubmit, watch, control, setValue, getValues } =
+    useForm({
+      defaultValues: {
+        title: post?.title || "",
+        content: post?.content || "",
+        slug: post?.slug || "",
+        status: post?.status || "active",
+      },
+    });
 
   const navigate = useNavigate();
 
-  // userData will come from store reducer named user
-  const userData = useSelector((state) => state.user.userData);
+  // userData will come from store reducer named auth
+  const userData = useSelector((state) => state.auth.userData);
 
   const submit = async (data) => {
     if (post) {
@@ -65,7 +66,7 @@ function PostForm({ post }) {
       return value
         .trim() //remove leading and trailing spaces  eg. "  hello world  " -> "hello world"
         .toLowerCase()
-        .replace(/^[a-zA-Z\d\s]+/g, "-") // Removes any non-alphanumeric characters (except spaces)
+        .replace(/[^a-zA-Z\d\s]+/g, "-") // Removes any non-alphanumeric characters (except spaces)
         .replace(/\s/g, "-");
     }
     return "";
