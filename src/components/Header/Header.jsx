@@ -44,7 +44,7 @@ function Header() {
   ];
 
   return (
-    <div className="py-3 shadow bg-gray-500">
+    <header className="py-3 shadow bg-gray-500">
       <Container>
         <nav className="flex">
           <div className="mr-4">
@@ -54,8 +54,7 @@ function Header() {
           </div>
 
           <ul className="flex ml-auto">
-            // whenever html element repeats itself unique key attribute is
-            needed
+            {/* // whenever html element repeats itself unique key attribute is needed */}
             {navItems.map((item) =>
               item.active ? (
                 <li key={item.name}>
@@ -78,7 +77,7 @@ function Header() {
           </ul>
         </nav>
       </Container>
-    </div>
+    </header>
   );
 }
 

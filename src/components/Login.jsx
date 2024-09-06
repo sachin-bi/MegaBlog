@@ -3,7 +3,7 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import { login as authLogin } from "../store/authSlice";
 import { Button, Input, Logo } from "./index";
 import { useDispatch } from "react-redux";
-import { authService } from "../appwrite/auth";
+import authService  from "../appwrite/auth";
 import { useForm } from "react-hook-form"; // IMPORTANT
 
 function Login() {
@@ -55,7 +55,7 @@ function Login() {
             Sign Up
           </Link>
         </p>
-        // display error if any
+        {/* // display error if any */}
         {error && <p className="text-red-600 mt-8 text-center">{error}</p>}
         {/*  sign in form starts here!
          **here handleSubmit is a event (from useForm(hook)) */}
@@ -87,7 +87,7 @@ function Login() {
               })}
             />
 
-            //btn component
+            {/* //btn component */}
             <Button type="submit" className="w-full">
               Sign In
             </Button>

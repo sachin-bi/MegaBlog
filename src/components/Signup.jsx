@@ -1,16 +1,16 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Button, Input, Logo } from "./index";
-import { Link, NavLink, useNavigate } from "react-router-dom";
-import { useForm } from "react-hook-form"; // IMPORTANT
-import { authService } from "../appwrite/auth";
+import { Link, useNavigate } from "react-router-dom";
 import { login } from "../store/authSlice";
+import authService from "../appwrite/auth";
+import { useForm } from "react-hook-form";    // IMPORTANT
 
 function Signup() {
   const [error, SetError] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [register, handleSubmit] = useForm();
+  const {register, handleSubmit} = useForm();
 
   const create = async (data) => {
     SetError("");
@@ -25,7 +25,7 @@ function Signup() {
       }
     } catch (error) {
       SetError(error.message);
-      console.log(error);
+      // console.log(error);
     }
   };
 
@@ -46,7 +46,7 @@ function Signup() {
         <p className="mt-2 text-center text-base text-black/60">
           Already have an account?&nbsp;
           <Link
-            to="/signin"
+            to="/login"
             className="font-medium text-primary transition-all duration-200 hover:underline"
           >
             Sign In
@@ -59,7 +59,8 @@ function Signup() {
             <Input
               label="Full Name: "
               placeholder="Enter your full name"
-              type="password"
+              type="text"
+              autoComplete="name"
               // important syntax of useForm (and name is imp)
               {...register("name", {
                 required: true,
@@ -70,6 +71,7 @@ function Signup() {
               label="Email: "
               placeholder="Enter your email"
               type="email"
+              autoComplete="email"  // Added autocomplete
               // important syntax of useForm(and name is imp)
               {...register("email", {
                 required: true,
@@ -85,13 +87,14 @@ function Signup() {
               label="Password: "
               placeholder="Enter your password"
               type="password"
-              // important syntax of useForm(and name is imp)
+              autoComplete="new-password"  // Added autocomplete
+              // {/* {} important syntax of useForm(and name is imp)*/}
               {...register("password", {
                 required: true,
               })}
             />
 
-            //btn component
+            {/* //btn component */}
             <Button type="submit" className="w-full">
               Create Account
             </Button>

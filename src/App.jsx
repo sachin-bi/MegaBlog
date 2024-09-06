@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";  // binding redux and react
+import { useDispatch } from "react-redux"; // binding redux and react
 import "./App.css";
 import authService from "./appwrite/auth";
 import { login, logout } from "./store/authSlice";
 // import Header from "./components/Header/Header";
-import {Header,Footer} from "./components"
-import { Outlet } from "react-router-dom";  //routing outlet isn't configured yet
+import { Header, Footer } from "./components";
+import { Outlet } from "react-router-dom"; //routing outlet isn't configured yet
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -29,11 +29,12 @@ function App() {
   return !loading ? (
     <div className="min-h-screen flex flex-wrap content-between bg-gray-400 ">
       <div className="w-full block">
-        <Header/>
+        <Header />
         <main>
-        TODO:  {/* <Outlet/> */}
+          {/* TODO: */}
+          <Outlet />
         </main>
-        <Footer/>
+        <Footer />
       </div>
     </div>
   ) : null; // null can be optimized (what to do while loading)
