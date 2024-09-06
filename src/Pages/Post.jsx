@@ -2,8 +2,10 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import appwriteService from "../appwrite/config";
 import { Button, Container } from "../components";
-import parse from "html-react-parser";
 import { useSelector } from "react-redux";
+import parse from "html-react-parser";
+// {/* parse is a function from html-react-parser that renders html content */}
+
 
 export default function Post() {
   const [post, setPost] = useState(null);
@@ -58,7 +60,10 @@ export default function Post() {
         <div className="w-full mb-6">
           <h1 className="text-2xl font-bold">{post.title}</h1>
         </div>
-        <div className="browser-css">{parse(post.content)}</div>
+        <div className="browser-css">
+          {parse(post.content)}
+          {/* parse is a function from html-react-parser that renders html content */}
+        </div>
       </Container>
     </div>
   ) : null;
