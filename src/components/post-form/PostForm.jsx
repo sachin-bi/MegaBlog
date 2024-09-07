@@ -16,22 +16,22 @@ function PostForm({ post }) {
       },
     });
 
-  const navigate = useNavigate();
+    
+    // userData will come from store reducer named auth
+    const userData = useSelector((state) => state.auth.userData);
+    
+    const navigate = useNavigate();
 
-  // userData will come from store reducer named auth
-  const userData = useSelector((state) => state.auth.userData);
 
   const submit = async (data) => {
     if (post) {
-      const file = data.image[0]
-        ? appwriteService.uploadFile(data.image[0])
-        : null;
+      const file = data.image[0] ? await appwriteService.uploadFile(data.image[0]) : null;    //mention await in front of appwriteService.uploadFile(data.image[0]) // debug done await required
       if (file) {
         appwriteService.deleteFile(post.featuredImage);
         // delete old image from storage //in database it is termed as featuredImage(this is id of file in storage)
       }
 
-      const dbPost = await appwriteService.updatePost(post.slug, {
+      const dbPost = await appwriteService.updatePost(post.$id, {
         ...data,
         featuredImage: file ? file.$id : undefined,
       });
@@ -41,18 +41,23 @@ function PostForm({ post }) {
       }
     } else {
       //  createPost({ title, slug, content, featuredImage, status, userId })
-      const file = data.image[0]
-        ? await appwriteService.uploadFile(data.image[0])
-        : null;
+      const file = await appwriteService.uploadFile(data.image[0]);
+       
       if (file) {
         const fileId = file.$id;
         data.featuredImage = fileId;
-        const dbPost = await appwriteService.createPost({
-          ...data,
-          userId: userData.$id,
-        });
+        console.log("data", userData);
+        
+        const dbPost = await appwriteService.createPost({...data, userId: userData.$id });
+        
+        console.log("userid", userData.$id);
+        // console.log("dbPost", dbPost);
+        
+
         if (dbPost) {
           navigate(`/post/${dbPost.$id}`);
+        }else {
+          console.error('Error creating post:', dbPost);
         }
       }
     }
@@ -83,6 +88,7 @@ function PostForm({ post }) {
       subscription.unsubscribe();
     };
   }, [watch, slugTransform, setValue]);
+
   return (
     <form onSubmit={handleSubmit(submit)} className="flex flex-wrap">
       <div className="w-2/3 px-2">
@@ -121,7 +127,7 @@ function PostForm({ post }) {
         {post && (
           <div className="w-full mb-4">
             <img
-              src={appwriteService.getFilePreview(post.featuredImage)}
+              src={appwriteService.getPreviewFile(post.featuredImage)}
               alt={post.title}
               className="rounded-lg"
             />

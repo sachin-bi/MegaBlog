@@ -3,7 +3,6 @@ import { useDispatch } from "react-redux"; // binding redux and react
 import "./App.css";
 import authService from "./appwrite/auth";
 import { login, logout } from "./store/authSlice";
-// import Header from "./components/Header/Header";
 import { Header, Footer } from "./components";
 import { Outlet } from "react-router-dom"; //routing outlet isn't configured yet
 
@@ -16,23 +15,20 @@ function App() {
       .getCurrentUser()
       .then((userData) => {
         if (userData) {
-          dispatch(login({ userData }));
+          dispatch(login({ userData }))
         } else {
-          dispatch(logout());
+          dispatch(logout())
         }
       })
-      .finally(() => {
-        setLoading(false);
-      });
-  }, []);
+      .finally(() => setLoading(false))
+  }, [])
 
   return !loading ? (
     <div className="min-h-screen flex flex-wrap content-between bg-gray-400 ">
       <div className="w-full block">
         <Header />
         <main>
-          {/* TODO: */}
-          <Outlet />
+          TODO: <Outlet />
         </main>
         <Footer />
       </div>

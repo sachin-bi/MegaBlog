@@ -83,14 +83,15 @@ export class Service {
 
     async getPosts(queries = [Query.equal("status", "active")]) {
         try {
-            return await this.databases.getDocument(
+            // return await this.databases.getDocument(
+            return await this.databases.listDocuments(
                 conf.appwriteDatabaseId,
                 conf.appwriteCollectionId,
                 queries,
                 // [Query.equal("status","active")]
             )
         } catch (error) {
-            console.log("Appwrite services - config.js :: getPosts :: ", error);
+            console.log("Appwrite services - config.js :: getPosts :: error", error);
             return false
 
         }
@@ -124,8 +125,10 @@ export class Service {
             return false
         }
     }
-    async getPreviewFile(fileId) {
-        try {
+     getPreviewFile(fileId) {
+        console.log("fileId", fileId);
+        
+        // try {
             // returns img preview url
             return this.bucket.getFilePreview(
                 conf.appwriteBucketId,
@@ -133,10 +136,10 @@ export class Service {
             )
             
 
-        } catch (error) {
-            console.log("Appwrite services - config.js :: previewFile :: ", error);
-            return false
-        }
+        // } catch (error) {
+        //     console.log("Appwrite services - config.js :: previewFile :: ", error);
+        //     return false
+        // }
     }
 
 
